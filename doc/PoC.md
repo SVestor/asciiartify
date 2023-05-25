@@ -42,7 +42,7 @@
   - Use the further credentials: **admin** for login and **password, which appeared into the terminal** after the last command you've issued following the instruction, for password
   - After logging in, click the **+ New App** button to create the application
   
-  ![argocd](argocd.png)
+  ![argocd](/argocd.png)
  
  ### For handy interaction with ArgoCD applications via CLI, it is required to install the ArgoCD CLI
  
@@ -68,9 +68,9 @@
     
   Now, when the application is deployed into the Kubernetes cluster, use `localhost:8081` in your browser to reach it
   
-  ![guestbook](guestbook1.png)
-  ![guestbook](guestbook.png)
-  ![guestbook](guestbook2.png)
+  ![guestbook](/guestbook1.png)
+  ![guestbook](/guestbook.png)
+  ![guestbook](/guestbook2.png)
   
 ### To remove the argo-app, ArggoCD and your cluster, use the following commands:
 
