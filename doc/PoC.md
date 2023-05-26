@@ -1,5 +1,5 @@
-## Installation of K3d, kubectl with an ArgoCD deployment on Kubernetes
-##### *The RHEL 9.1 was selected for demonstration purposes*   
+## Installation of K3d, kubectl with an Argo CD deployment on Kubernetes
+##### *The RHEL 9.2 was selected for demonstration purposes*   
 
 ### K3d installation
  - wget:
@@ -30,11 +30,11 @@
     k3d cluster list
     k3d node list
     
-### ArgoCD deployment
+### Argo CD deployment
 
     ku create namespace argocd
     ku get ns
-    ku apply -n argocd -f [https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml](https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml)
+    ku apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
     ku get all -n argocd
     ku port-forward svc/argocd-server -n argocd 8080:443&
     ku -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"| base64 -d; echo
@@ -44,7 +44,7 @@
   
   ![argocd](/argocd.png)
  
- ### For handy interaction with ArgoCD applications via CLI, it is required to install the ArgoCD CLI
+ ### For handy interaction with Argo CD applications via CLI, it is required to install the Argo CD CLI
  
     curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
     sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
@@ -54,7 +54,7 @@
    - type `argocd login localhost:8080 --insecure --username <USERNAME> --password <PASSWORD>` to login via CLI
    - type `argocd account update-password` to change the password
    
-   ### Creating the example guestbook application using ArgoCD CLI
+   ### Creating the example guestbook application using Argo CD CLI
 
     ku create ns guestbook
     argocd app create guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path helm-guestbook --dest-server https://kubernetes.default.svc --dest-namespace guestbook
@@ -72,7 +72,7 @@
   ![guestbook](/guestbook.png)
   ![guestbook](/guestbook2.png)
   
-### To remove the argo-app, ArggoCD and your cluster, use the following commands:
+### To remove the argo-app, Argo CD and your cluster, use following commands:
 
     argocd app delete guestbook
     ku delete ns guestbook
@@ -80,4 +80,4 @@
     k3d cluster delete <nameofthecluster>
 
 
-> **If you require more advanced documentation in relation to ArgoCD use the following link to [get started](https://argo-cd.readthedocs.io/en/stable/getting_started/) with**
+> **If you require more advanced documentation in relation to Argo CD use the following link to [get started](https://argo-cd.readthedocs.io/en/stable/getting_started/) with**
